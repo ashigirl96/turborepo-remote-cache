@@ -238,7 +238,7 @@ test('Google Cloud Storage', async (t) => {
 test('Google Cloud Storage ADC', async (t) => {
   const testEnv = {
     ...commonTestEnv,
-    GCS_PROJECT_ID: '',
+    GCS_PROJECT_ID: 'XXX',
     GCS_CLIENT_EMAIL: '',
     GCS_PRIVATE_KEY: '',
   }

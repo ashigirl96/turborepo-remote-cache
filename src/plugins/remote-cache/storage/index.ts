@@ -101,6 +101,7 @@ function createStorageLocation<Provider extends STORAGE_PROVIDERS>(
   }
 }
 
+export type CreateLocationType = ReturnType<typeof createLocation>
 export function createLocation<Provider extends STORAGE_PROVIDERS>(
   provider: Provider,
   providerOptions: ProviderOptions<Provider>,
@@ -158,13 +159,9 @@ export function createLocation<Provider extends STORAGE_PROVIDERS>(
 declare module 'fastify' {
   interface FastifyInstance {
     location: {
-      existsCachedArtifact: ReturnType<
-        typeof createLocation
-      >['existsCachedArtifact']
-      getCachedArtifact: ReturnType<typeof createLocation>['getCachedArtifact']
-      createCachedArtifact: ReturnType<
-        typeof createLocation
-      >['createCachedArtifact']
+      existsCachedArtifact: CreateLocationType['existsCachedArtifact']
+      getCachedArtifact: CreateLocationType['getCachedArtifact']
+      createCachedArtifact: CreateLocationType['createCachedArtifact']
     }
   }
 }

@@ -9,8 +9,13 @@ export interface GoogleCloudStorageOptions {
 }
 
 function createStorage({ clientEmail, privateKey, projectId }) {
-  if (!clientEmail || !privateKey || !projectId) {
-    return new GCS.Storage()
+  if (!projectId) {
+    throw new Error('projectId is required')
+  }
+  if (!clientEmail || !privateKey) {
+    return new GCS.Storage({
+      projectId,
+    })
   } else {
     return new GCS.Storage({
       projectId,
